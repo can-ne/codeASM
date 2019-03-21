@@ -1,0 +1,22 @@
+git config
+thêm email
+git config --global user.name = "nezzt87"
+git config --global user.email = "canabce@gmail.com"
+git init
+git status
+git add . /...
+git commit -m "message"
+git commit -a -m "message"
+
+git log
+git status
+
+git push
+git remote add gitproject https://github.com/nezzt87/BTLTHT
+git push gitproject 
+git push --set-upstream gitproject master
+git push -f gitproject master
+git push -
+git pull origin master --allow-unrelated-histories
+git pull origin master
+git push -u origin master
