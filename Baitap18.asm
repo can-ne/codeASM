@@ -5,44 +5,52 @@
      muoi db 10
      xuong db 10,13,'$'
      chuoi db 50,0,50 dup($)
-     count db 0
+     count db 0 
+     b1 db 0
 .CODE
     MAIN PROC
         MOV ax,@data
         MOV ds,ax
         xor cx,cx 
-;Nhap:        
-;        mov ah,1
-;        int 21h
-;        cmp al,0
-;        sub al,30H
-;        je Chia 
-;        inc cx
-;        add tong, al
-;        mov ah,9
-;        lea dx,xuong
-;        int 21h        
-;        jmp Nhap
         mov ah,0Ah
         lea dx,chuoi
-        int 21h 
+        int 21h
+        xor ax,ax 
         mov cl,[chuoi+ 1]
         lea si,chuoi + 2
-Tong:
+Tongso: 
+        cmp [si],0dh
+        je congcuoi
         cmp [si],' '
-        je 
-        inc si
-        
-        
-        loop tong
+        jne tiep
+        congcuoi: 
+            inc count
+            xor bx,bx
+            mov bl,tong
+            add bl,b1
+            mov tong,bl
+            mov b1,0
+            inc si
+            
+        tiep:
+            mov al,b1
+            xor bx,bx
+            mov bl,[si]
+            sub bl,30h
+            mul muoi
+            add ax,bx
+            mov b1,al
+            inc si
+        loop tongso
 Chia:    
         mov ah,9
         lea dx,xuong 
         int 21h
         XOR AX,AX 
-        mov al,tong
+        mov al,tong 
+        mov cl,count
         div cl
-        
+        xor ah,ah
         xor cx,cx
         Lap:
            xor dx,dx
