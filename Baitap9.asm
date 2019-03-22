@@ -3,20 +3,26 @@
 .data
     so db 10,0, 10 dup($)
     muoi db 10 
-    xuong db 10,13,'$'
+    xuong db 10,13,'Ket Qua: $'
     B1 Dw 0 
     b2 dw 0
+    tb1 db 10,13, 'Nhap vao so dau: $'
+    tb2 db 10,13, 'Nhap vao so thu 2: $'
 .code
     main proc
         mov ax,@data
         mov ds,ax
         ;nhap xau
-        mov ah,0Ah
+         lea dx,tb1 
+        mov ah,9
+        int 21h  
+        xor cx,cx
         lea dx,so
+        mov ah,0Ah
         int 21h
         ;xuong hang  
         mov ah,9
-        lea dx,xuong
+        lea dx,tb2
         int 21h
         ;dua ve ky tu dau tien nhap vao
         lea si,so + 2                  
