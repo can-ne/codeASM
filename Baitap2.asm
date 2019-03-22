@@ -16,7 +16,7 @@
         
         mov ah,01h
         int 21h 
-        mov ktu,al
+        mov bl,al
         
         mov ah, 09h
         mov dx,offset str2
@@ -24,7 +24,7 @@
         
         
         mov ah,2
-        mov dl,ktu
+        mov dl,bl
         int 21h
         
         mov ah,4CH
