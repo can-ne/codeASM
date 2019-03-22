@@ -14,7 +14,7 @@
         lea dx,tb1
         mov ah,9
         int 21h
-        
+        ;nhap so vao
         lea dx,so
         mov ah,0Ah
         int 21h 
