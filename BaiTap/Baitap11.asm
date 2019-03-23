@@ -7,8 +7,8 @@
     tb2 db 10, 13, 'So B 16bit: $'
     tb3 db 10, 13, 'A + B =    $'
     tb4 db 10, 13, 'A - B =     $'
-    tb5 db 10, 13, 'A || B =   $'
-    tb6 db 10, 13, 'A ^ B =    $'
+    tb5 db 10, 13, 'A OR B =    $'
+    tb6 db 10, 13, 'A XOR B =   $'
 MAIN PROC
     mov ax, @data
     mov ds,ax
@@ -48,15 +48,14 @@ Lap2:
     int 21h
     
     mov bx,b2
-    add bx,b1
+    add bx,b1 
+    
     mov cx,16
     mov dx, 30h
     adc dx,0
-    cmp dx,31h
-    je boqua
     mov ah,2
-    int 21h
-    boqua:
+    int 21h 
+    
 Lap3:
     mov dl,30h
     shl bx,1
@@ -80,6 +79,34 @@ Lap4:
     int 21h
     loop Lap4
     
+    mov ah,9
+    lea dx,tb5
+    int 21h  
+    
+    mov bx,b1
+    or bx,b2
+    mov cx,16
+Lap5:
+    mov dl,30h
+    shl bx,1
+    adc dl,0
+    mov ah,2
+    int 21h
+    loop Lap5
+    
+    mov ah,9
+    lea dx,tb6
+    int 21h
+    mov bx,b1
+    xor bx,b2
+    mov cx,16
+Lap6:
+    mov dl,30h
+    shl bx,1
+    adc dl,0
+    mov ah,2
+    int 21h
+    loop Lap6
         mov ah,4ch
         int 21h
     main endp
