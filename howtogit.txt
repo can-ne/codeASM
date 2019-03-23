@@ -22,3 +22,4 @@ git pull origin master
 git push -u origin master
 git checkout -b <newbranch>
 git checkout master
+git merge <newbranch>
