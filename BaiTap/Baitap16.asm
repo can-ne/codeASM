@@ -39,28 +39,25 @@
             mov b1,ax          
             inc si
             Loop Lap 
-        
-        mov ah,0Ah
-        lea dx,so
+        mov ah,01h
         int 21h
-          
+        sub al,30h
+        xor cx,cx 
+        mov cl,al
+        
+        mov ax,1
+        mov bx,1
+        Giaithua:
+            Mul bx 
+            inc bx
+            cmp bx,cx
+            jle giaithua
+        mov b2,ax
+        
+        lea dx, xuong
         mov ah,9
-        lea dx,xuong
         int 21h
         
-        lea si,so + 2
-        mov cl,[so + 1]
-        Lap2:
-            mov Ax,b2
-            xor bx,bx
-            mov bl,[si]
-            sub bl,48
-            mul muoi
-            add ax,bx
-            mov b2,ax          
-            inc si
-            Loop Lap2 
-        ;cong b1 va b2 vao dx
         mov bx,b1
         mov dx,b2
         Lap3:
