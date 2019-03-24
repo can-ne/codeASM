@@ -1,3 +1,6 @@
+;Nhap vao chuoi ky tu bat ky
+;bien tat ca thanh chu thuong roi in ra
+;bien tat ca chu cai thanh hoa r in ra
 .model small
 .stack 50
 .data

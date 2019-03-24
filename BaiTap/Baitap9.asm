@@ -1,3 +1,4 @@
+;nhap vao hai chuoi so roi tinh tong
 .model small
 .stack 50
 .data

@@ -1,40 +1,49 @@
-.model small   ;hien thi tu ?-z
+;Nhap vao chu cai
+;neu chu hoa bien thanh chu cai thuong
+;neu chu cai thuong bien thanh chu cai hoa
+.model small
 .stack 50
 .data
-       str DB 10,13,'Nhap ky tu thuong:$' 
-       str1 DB 10,13,  ' $'
-       ktu DB ?
-       
+    str1 DB 10,13, 'Nhap vao chu cai:$'
+    xuong db 10, 13 , "$"    
 .code
     main proc
         mov ax, @data
-        mov ds,ax 
-        
-        mov ah,09h
-        mov dx,offset str
-        int 21h
-        
-        
+        mov ds,ax   
+     
+Lap:  
+        mov ah,09
+        lea dx,str1  
+        int 21h 
+                
         mov ah,01h
         int 21h
-        mov ktu,al
-Lap:    
-        lea dx, str1
-        int 21h
         
-        inc ktu
-        cmp ktu, 'z'
-        jg Thoat
-        lea dx,str1
-        mov ah,9
-        mov dl,ktu
-        mov ah,2
-        int 21h
-        jmp Lap
-Thoat:
+        cmp al,'A'
+        JL Lap       
+        cmp al,'z'
+        Ja Lap
+        cmp al,'Z'
+        Jl Low        
+        cmp al,'a'
+        JL Lap
+        cmp al,'z'
+        JL Up
         
+Up:
+    and al,11011111b 
+    mov dl,al
+    mov ah,02 
+    int 21h
+    JMP Exit1
+    
+Low:                       
+    
+    add al,32
+    mov ah,02 
+    int 21h
+Exit1:        
         mov ah,4CH
-        int 21h    
-              
+        int 21h        
     main endp
     end main

@@ -1,3 +1,5 @@
+;nhap vao chuoi ky tu
+;hien thi Xin chao <chuoi ky tu da nhap>
 .model small
 .stack 100h
 .data
@@ -8,7 +10,7 @@
     main proc
         mov ax, @data
         mov ds,ax   
-        
+        ;nhap chuoi ky tu
         mov ah,0Ah
         lea dx,mang
         int 21h 
@@ -17,7 +19,7 @@
         
         lea dx,str2
         int 21h
-        
+        ;dua dx chi ve phan tu thu 2 cua mang la ky tu dau tien duoc nhap vao
         lea dx,[mang + 2]       
         int 21h
         

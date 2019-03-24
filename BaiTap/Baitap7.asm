@@ -1,3 +1,4 @@
+;khong su dung 0Ah/21h nhap vao chuoi ky tu va dem so ky tu hien thi lai chuoi ky tu do
 .model small
 .stack 50
 .data

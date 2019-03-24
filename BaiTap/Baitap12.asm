@@ -1,3 +1,5 @@
+;Nhap vao ban phim 1 ky tu
+;hien thi ma ascii cua no o dang Hex, Dec, Bin
 .model small
 .stack 100
 .data

@@ -1,3 +1,4 @@
+;Nhap vao 1 chu cai thuong/ hien thi tu chu cai do den z
 .model small   ;hien thi tu ?-z
 .stack 50
 .data

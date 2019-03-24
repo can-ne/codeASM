@@ -1,3 +1,5 @@
+;Nhap vao 1 ky tu 
+;'S'/'s' hien thi "Good Morning!", 'T'/'t' "Good Afternoon!", 'C'/'c' "Good Everning"
 .model small
 .stack 50
 .data
@@ -15,9 +17,7 @@
         int 21h    
         mov ah,01
         int 21h
-        
-
-        
+               
         cmp al,'S'
         Je Morning
         cmp al,'s'
@@ -31,7 +31,8 @@
         cmp al,'C'
         Je Everning
         cmp al,'c'
-        je Everning 
+        je Everning
+        jmp thoat 
 Morning: 
         mov ah,09h
         lea dx,gm

@@ -1,3 +1,5 @@
+;Nhap 2 so nhi phan 16 bit
+;tinh A+B,A-B,A and B,A OR B
 .model small
 .stack 100
 .data
@@ -8,7 +10,7 @@
     tb3 db 10, 13, 'A + B =    $'
     tb4 db 10, 13, 'A - B =     $'
     tb5 db 10, 13, 'A OR B =    $'
-    tb6 db 10, 13, 'A XOR B =   $'
+    tb6 db 10, 13, 'A AND B =   $'
 MAIN PROC
     mov ax, @data
     mov ds,ax
@@ -98,7 +100,7 @@ Lap5:
     lea dx,tb6
     int 21h
     mov bx,b1
-    xor bx,b2
+    and bx,b2
     mov cx,16
 Lap6:
     mov dl,30h

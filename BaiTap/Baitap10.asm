@@ -1,3 +1,6 @@
+;nhap 2 so tu ban phim
+; tinh a/b a*b khong su dung DIV va MUL
+
 .model small
 .stack 50           
 .data
