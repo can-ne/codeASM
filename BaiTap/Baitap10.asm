@@ -29,36 +29,19 @@
         lea dx,tb2 
         int 21h
         
-        xor cx,cx
-        lea si,so + 2
-        mov cl,[so+1]
-        Lap:
-            mov ax,b1
-            xor bx,bx
-            mov bl,[si]
-            sub bl,30h
-            mul muoi
-            add ax,bx
-            mov b1,ax
-            inc si
-            loop Lap
+        call xulichuoi
+        mov b1,dx
         
         mov ah,0Ah
         lea dx,so
         int 21h
         
-        lea si,so + 2
-        mov cl,[so+1]
-        Lap2:
-            mov ax,b2
-            xor bx,bx
-            mov bl,[si]
-            sub bl,30h
-            mul muoi
-            add ax,bx
-            mov b2,ax
-            inc si
-            loop Lap2
+        call xulichuoi
+        mov b2, dx
+        
+        mov ah,9
+        lea dx,tb3
+        int 21h
         
         mov dx,b1
         mov ax,b2
@@ -72,43 +55,26 @@
         
         mov ax,cx
         xor cx,cx 
+        Call Inchuoi   
         
+        lea dx,tb4
         mov ah,9
-        lea dx,tb3
         int 21h
-        
-        Lapchia1:
-            xor dx,dx
-            div muoi
-            
-            add ah,30h
-            mov dl,ah
-            push dx
-            inc cx
-            xor ah,ah
-            cmp ax,0
-            jne Lapchia1
-        Hienthi1:
-            pop dx
-            mov ah,2 
-            int 21h
-            loop Hienthi1    
         
         xor cx,cx
         xor dx,dx 
-        
         mov cx,b2
         Nhan:
             add dx,b1
             Loop Nhan     
         mov ax,dx
         xor cx,cx   
-        
-        lea dx,tb4
-        mov ah,9
+        Call inchuoi
+        mov ah,4Ch
         int 21h
-        
-        Lapchia2:
+    main endp 
+    inchuoi PROC
+           Lapchia:
             xor dx,dx
             div muoi
             
@@ -118,13 +84,29 @@
             inc cx
             xor ah,ah
             cmp ax,0
-            jne Lapchia2
-        Hienthi2:
+            jne Lapchia
+        Hienthi:
             pop dx
             mov ah,2 
             int 21h
-            loop Hienthi2
-        mov ah,4Ch
-        int 21h
-    main endp
-    end main
+            loop Hienthi
+            ret
+    inchuoi ENDP
+    xulichuoi PROC
+        xor dx,dx
+        xor cx,cx
+        lea si,so + 2
+        mov cl,[so+1]
+        Lap:
+            mov ax,dx
+            xor bx,bx
+            mov bl,[si]
+            sub bl,30h
+            mul muoi
+            add ax,bx
+            mov dx,ax
+            inc si
+            loop Lap
+            ret
+    xulichuoi ENDP
+end main
