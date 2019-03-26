@@ -73,6 +73,7 @@
         mov ah,4Ch
         int 21h
     main endp 
+    
     inchuoi PROC
            Lapchia:
             xor dx,dx
@@ -92,6 +93,7 @@
             loop Hienthi
             ret
     inchuoi ENDP
+    
     xulichuoi PROC
         xor dx,dx
         xor cx,cx

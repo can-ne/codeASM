@@ -21,25 +21,13 @@
         lea dx,so
         mov ah,0Ah
         int 21h
+        call xulichuoi
+        mov b1,dx
         ;xuong hang  
         mov ah,9
         lea dx,tb2
         int 21h
-        ;dua ve ky tu dau tien nhap vao
-        lea si,so + 2                  
-        ;dua so ky tu vao
-        mov cl,[so + 1]  
-        ;dua so vao b1
-        Lap:
-            mov Ax,b1
-            xor bx,bx
-            mov bl,[si]
-            sub bl,48
-            mul muoi
-            add ax,bx
-            mov b1,ax          
-            inc si
-            Loop Lap 
+        
         
         mov ah,0Ah
         lea dx,so
@@ -49,18 +37,9 @@
         lea dx,xuong
         int 21h
         
-        lea si,so + 2
-        mov cl,[so + 1]
-        Lap2:
-            mov Ax,b2
-            xor bx,bx
-            mov bl,[si]
-            sub bl,48
-            mul muoi
-            add ax,bx
-            mov b2,ax          
-            inc si
-            Loop Lap2 
+        call xulichuoi
+        mov b2,dx  
+        
         ;cong b1 va b2 vao dx
         mov dx,b2
         add dx,b1
@@ -87,5 +66,24 @@
         mov ah,4Ch
         int 21h
         
-    main endp
+    main endp 
+    
+     xulichuoi PROC
+        xor dx,dx
+        xor cx,cx
+        lea si,so + 2
+        mov cl,[so+1]
+        Lap:
+            mov ax,dx
+            xor bx,bx
+            mov bl,[si]
+            sub bl,30h
+            mul muoi
+            add ax,bx
+            mov dx,ax
+            inc si
+            loop Lap
+            ret
+    xulichuoi ENDP
+     
     end main
