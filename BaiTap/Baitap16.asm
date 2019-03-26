@@ -59,7 +59,8 @@
         int 21h
         
         mov bx,b1
-        mov dx,b2
+        mov dx,b2 
+        
         Lap3:
         cmp bx,dx
         jz thoat

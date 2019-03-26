@@ -53,8 +53,7 @@
             cmp dx,ax
             jae chia 
         
-        mov ax,cx
-        xor cx,cx 
+        mov ax,cx 
         Call Inchuoi   
         
         lea dx,tb4
@@ -66,15 +65,17 @@
         mov cx,b2
         Nhan:
             add dx,b1
-            Loop Nhan     
-        mov ax,dx
-        xor cx,cx   
-        Call inchuoi
+            Loop Nhan 
+                
+        mov ax,dx  
+        Call inchuoi 
+        
         mov ah,4Ch
         int 21h
     main endp 
     
-    inchuoi PROC
+    inchuoi PROC 
+        xor cx,cx
            Lapchia:
             xor dx,dx
             div muoi
