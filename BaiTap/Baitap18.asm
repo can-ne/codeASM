@@ -3,15 +3,20 @@
 .DATA
      tong db 0 
      muoi db 10
-     xuong db 10,13,'$'
+     tb2 db 10,13,'TB: $'
      chuoi db 50,0,50 dup($)
      count db 0 
-     b1 db 0
+     b1 db 0 
+     tb1 db 'Nhap chuoi so can tinh trung binh: $'
 .CODE
     MAIN PROC
         MOV ax,@data
         MOV ds,ax
         xor cx,cx 
+        lea dx,tb1
+        mov ah,9
+        int 21h
+        
         mov ah,0Ah
         lea dx,chuoi
         int 21h
@@ -44,7 +49,7 @@ Tongso:
         loop tongso
 Chia:    
         mov ah,9
-        lea dx,xuong 
+        lea dx,tb2 
         int 21h
         XOR AX,AX 
         mov al,tong 

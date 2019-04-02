@@ -2,17 +2,22 @@
 .stack 100
 .data
      mang db 20,0, 20 dup(?)  
-     xuong db 10,13,'$'
+     tb2 db 10,13,'Chuoi da duoc dao nguoc: $' 
+     tb1 db "Nhap 1 chuoi vao: $"
 .code
     main proc
         mov ax,@data
         mov ds,ax
         
+        mov ah,9
+        lea dx, tb1
+        int 21h
+        
         mov ah,0ah
         lea dx,mang
         int 21h
         
-        lea dx,xuong
+        lea dx, tb2
         mov ah,9
         int 21h
         
