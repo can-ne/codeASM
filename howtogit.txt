@@ -23,3 +23,9 @@ git push -u origin master
 git checkout -b <newbranch>
 git checkout master
 git merge <newbranch>
+
+git clone repositoru_url
+git commit --amend -m "message change"
+git commit --amend --author "name <email@example.com>
+git fetch <remote_name> <target_branch_name>:<target_branch_name>
+
