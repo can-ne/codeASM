@@ -3,13 +3,20 @@
 .stack 50
 .data
     muoi dw 10
-    xuong db 10,13,'$'
+    xuong db 10,13,'$' 
+    tb1 db 'Nhap so khong am be hon hoac bang 8: $' 
 .code
     main proc
         mov ax,@data
         mov ds,ax   
-        mov ah,01h
+        
+        lea dx, tb1
+        mov ah,9
         int 21h
+        
+        mov ah,01h
+        int 21h  
+        
         sub al,30h
         xor cx,cx 
         mov cl,al

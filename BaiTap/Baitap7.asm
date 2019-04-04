@@ -3,13 +3,19 @@
 .stack 50
 .data
       mang DB 50 dup(?)  
-      kt Db ? 
-      xuongdong db 10,13,'$'
+      kt Db ?
+      tb1 db 'Nhap chuoi: $'
+      tb2 db 10, 13, 'So ki tu: $'
+      tb3 db 10, 13, 'Chuoi da nhap vao: $' 
       chia db 10
 .code
     main proc
         mov ax,@data
-        mov ds,ax
+        mov ds,ax 
+        lea dx, tb1
+        mov ah,9
+        int 21h
+        
         ;nhap mang
         Lea Si,mang
         xor cx,cx 
@@ -24,7 +30,7 @@ Lapnhap:
         jmp Lapnhap
 ;xuong dong        
 Xuong:  
-        lea dx,xuongdong  
+        lea dx, tb2  
         mov ah,09h
         int 21h
 ;hien thi so ky tu        
@@ -49,7 +55,7 @@ Xuong:
             int 21h
             loop Hienthi:
         
-        lea dx,xuongdong  
+        lea dx,tb3  
         mov ah,09h
         int 21h
 ;hien thi da nhap vao        

@@ -33,13 +33,12 @@
             Boqua: 
             inc si
             loop lap1
-        mov ah,09h
-        lea dx,[mang +2]
-        int 21h 
         
-        lea dx,xuong
-        mov ah,09
-        int 21h 
+        
+        call xuat  
+        lea dx,gach
+        mov ah,9
+        int 21h
         
         Lea si,mang + 2
         mov cl,[mang + 1]
@@ -54,11 +53,21 @@
                 inc Si
             loop Lap2
         
-        mov ah,09h
-        lea dx,[mang +2]
-        int 21h
+        call xuat
         
         mov ah,4ch
         int 21h          
-    main endp
-    end main
+    main endp 
+    
+    xuat PROC
+        mov cl,[mang + 1]
+        lea si,mang + 2
+        lap:
+        mov dl,[si]
+        mov ah,2
+        int 21h
+        inc si
+        loop lap
+        ret
+   xuat endp
+end main
