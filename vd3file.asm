@@ -5,7 +5,7 @@
 .data
         controf dw ?
         tenf    db 'ab.txt',0
-        buff db 5 dup('$')
+        buff    db 5 dup('$')
         
 .code
     main proc 
@@ -27,10 +27,13 @@ Lapnhap:
         je thoat
         mov [si], al
         inc si
-        inc cx
-        jmp Lapnhap    
-        thoat:  
+        inc cx 
+        cmp cx,5
+        je thoat
+        jmp Lapnhap            
         
+        thoat:                 
+        ;cx da duoc tang o tren
         lea dx, buff
         mov bx, controf
         mov ah,40h
