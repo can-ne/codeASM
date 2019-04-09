@@ -3,7 +3,7 @@
 .stack 50
 .data
         controf dw ?
-        tenf    db 'ab.txt',0
+        tenf    db 'bt.txt',0
         buff db ?
 .code
     main proc 
