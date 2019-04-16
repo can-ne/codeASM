@@ -3,7 +3,7 @@
 .stack 50
 .data
     so db 10,0, 10 dup($)
-    muoi db 10 
+    muoi dw 10 
     xuong db 10,13,'Ket Qua: $'
     B1 Dw 0 
     b2 dw 0
@@ -49,9 +49,7 @@
         Lapchia:
             xor dx,dx
             div muoi
-            
-            add ah,30h
-            mov dl,ah
+            add dx,30h
             push dx
             inc cx
             xor ah,ah
@@ -64,7 +62,7 @@
             loop Hienthi
             
         mov ah,4Ch
-        int 21h
+        int 21h                                
         
     main endp 
     

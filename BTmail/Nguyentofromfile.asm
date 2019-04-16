@@ -5,7 +5,8 @@
      ctrof dw ?
      buf db  100,0,100 dup('$') 
      count db 0
-     b1 db  0
+     b1 db  0  
+     b2 db 1 dup('$')
      muoi db 10
      outp db 'out.txt',0
      conf dw ?
@@ -54,7 +55,7 @@
         je exitXLC
         cmp [si], ' '
         jne tiep
-            
+            call xau
             call kiemtra
             mov b1,0
             inc si  
@@ -70,13 +71,33 @@
             inc si
         jmp XULICHUOI  
         exitXLC:
+            call kiemtra
               
         MOV AH, 4Ch
         INT 21H
     MAIN ENDP
     
     KIEMTRA PROC
-        
+            mov cx,2
+        nt: 
+            mov al,b1
+            div cl
+            cmp ah,0
+            ja exit
+            cmp cl,b1
+            inc cx
+            jl nt 
+            
+            lea dx,b2
+            mov cx,3
+            mov bx,conf
+            mov ah, 40h
+            int 21h
+        exit:    
         ret    
     KIEMTRA ENDP
+    XAU PROC
+        
+        ret
+    XAU ENDP
 END MAIN
