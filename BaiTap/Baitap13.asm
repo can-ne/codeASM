@@ -112,7 +112,7 @@ Lap6:
             mov bl,[si] 
             
             cmp bl, 48
-            jle thoat
+            jl thoat
             cmp bl,57
             jae tiep
             sub bl,48
@@ -131,6 +131,7 @@ Lap6:
             jmp conti
             
             thoat:
+            mov cx,0
             mov ah, 9
             lea dx, tbloi
             int 21h 
