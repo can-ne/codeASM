@@ -10,6 +10,7 @@
     tb4 db 10, 13, 'A - B =     $'
     tb5 db 10, 13, 'A OR B =    $'
     tb6 db 10, 13, 'A XOR B =   $'
+    tbloi db 10, 13 , 'Nhap sai$'
     so db 5,0,5 dup(?) ,'$'
     muoi dw 16
 .code
@@ -19,51 +20,15 @@
         
         lea dx,tb1 
         mov ah,9
-        int 21h 
-         
-        xor cx,cx
-        lea dx,so
-        mov ah,0Ah
         int 21h
-        
-        ;dua ve ky tu dau tien nhap vao
-        lea si,so + 2                  
-        ;dua so ky tu vao
-        mov cl,4  
-        ;dua so vao b1
-        Lap1:
-            mov Ax,b1
-            xor bx,bx
-            mov bl,[si]
-            sub bl,48
-            mul muoi
-            add ax,bx
-            mov b1,ax          
-            inc si
-            Loop Lap1  
-        
+        call Nhap        
+        mov ax,b2
+        mov b1,ax
         ;xuong hang  
         mov ah,9
         lea dx,tb2
         int 21h
-        
-        xor cx,cx
-        lea dx,so
-        mov ah,0Ah
-        int 21h
-        
-        lea si,so + 2
-        mov cl,4
-        Lap2:
-            mov Ax,b2
-            xor bx,bx
-            mov bl,[si]
-            sub bl,48
-            mul muoi
-            add ax,bx
-            mov b2,ax          
-            inc si
-            Loop Lap2 
+        call Nhap
     mov ah, 09
     lea dx, tb3
     int 21h
@@ -130,5 +95,50 @@ Lap6:
     loop Lap6 
         mov ah,4Ch
         int 21h
-        main endp
+        main endp 
+    nhap proc
+        xor cx,cx
+        lea dx,so
+        mov ah,0Ah
+        int 21h
+        ;dua ve ky tu dau tien nhap vao
+        lea si,so + 2                  
+        ;dua so ky tu vao
+        mov cl,4  
+        ;dua so vao b1
+        Lap1:
+            mov Ax,b2
+            xor bx,bx
+            mov bl,[si] 
+            
+            cmp bl, 48
+            jle thoat
+            cmp bl,57
+            jae tiep
+            sub bl,48
+            jmp nhan1 
+            tiep:
+            cmp bl,65
+            jl thoat
+            cmp bl,70
+            ja thoat
+            sub bl,55
+            nhan1:
+            mul muoi
+            add ax,bx
+            mov b2,ax          
+            inc si 
+            jmp conti
+            
+            thoat:
+            mov cx,0
+            mov ah, 9
+            lea dx, tbloi
+            int 21h 
+            
+            conti:
+            Loop Lap1
+        ret
+    nhap endp 
+    
     end main
