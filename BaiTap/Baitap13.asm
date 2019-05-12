@@ -131,11 +131,10 @@ Lap6:
             jmp conti
             
             thoat:
-            mov cx,0
             mov ah, 9
             lea dx, tbloi
             int 21h 
-            
+            ret
             conti:
             Loop Lap1
         ret
