@@ -25,8 +25,13 @@ main proc
 Lap1:
     xor dx,dx
     div chia16
-    
-    add ah,30h
+    cmp ah,9
+    ja chucai
+    add ah,30h  
+    jmp so
+    chucai:  
+    add ah,55   
+    so:
     mov dl, ah
     push dx
     inc cx
