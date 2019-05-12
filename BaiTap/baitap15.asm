@@ -33,14 +33,14 @@
             cmp bx,cx
             jle giaithua 
         xor cx,cx
-        Lap:
+        Lappush:
             xor dx,dx
             div muoi
             add dx,30h
             push dx
             inc cx
             cmp ax,0
-            jne Lap
+            jne Lappush
         Hienthi:
             pop dx
             mov ah,2
