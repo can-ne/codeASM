@@ -27,7 +27,8 @@
         ;xuong hang  
         mov ah,9
         lea dx,tb2
-        int 21h
+        int 21h 
+        mov b2, 0
         call Nhap
     mov ah, 09
     lea dx, tb3
@@ -104,7 +105,7 @@ Lap6:
         ;dua ve ky tu dau tien nhap vao
         lea si,so + 2                  
         ;dua so ky tu vao
-        mov cl,4  
+        mov cl, [so + 1] 
         ;dua so vao b1
         Lap1:
             mov Ax,b2
