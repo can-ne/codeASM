@@ -30,6 +30,7 @@
         int 21h 
         mov b2, 0
         call Nhap
+        
     mov ah, 09
     lea dx, tb3
     int 21h
@@ -96,7 +97,8 @@ Lap6:
     loop Lap6 
         mov ah,4Ch
         int 21h
-        main endp 
+        main endp
+    
     nhap proc
         xor cx,cx
         lea dx,so

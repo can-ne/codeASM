@@ -2,9 +2,11 @@
 .stack 50
 .data
          so db 50, 0 , 50 dup($)
-         tong dw 0 
-         muoi db 10
-         kq db 10,13,'Tong cac chu so: $'
+         b1 dw 0   ; so duoc nhap vao
+         muoi dw 10
+         b2 dw 0   ; tong cac uoc cua so duoc nhap vao  
+         hoanhao db 10, 13, "so hoan hao$"
+         khh db 10, 13, "Khong hoan hao$"
 .code
     main proc
         mov ax,@data
@@ -18,36 +20,38 @@
         mov cl, [so + 1]
         
         Lap:
-            mov ax,tong
+            mov ax,b1
             xor bx,bx
             mov bl, [si]
             sub bl,30h
+            mul muoi
             add ax,bx
-            mov tong,ax 
+            mov b1,ax 
             inc si
             loop Lap
-        
-        lea dx,kq
-        mov ah,9
+        mov cx, 2
+        Tongu:
+        xor dx, dx
+        mov ax, b1
+        div cx
+        cmp dx, 0
+        jne boqua
+        add b2, ax  
+        boqua:
+        inc cx
+        cmp cx, b1
+        jle tongu 
+        mov bx, b1
+        cmp bx, b2
+        je HH
+        lea dx, khh 
+        jmp inra
+        HH:
+        lea dx, hoanhao
+        inra:
+        mov ah, 9
         int 21h
-        
-        mov ax,tong
-        xor cx,cx
-        Lappush:
-            xor dx,dx
-            div muoi
-            add ah,30h
-            mov dl,ah
-            push dx
-            inc cx
-            xor ah,ah
-            cmp ax,0
-            jne lappush
-        Hienthi:
-            pop dx
-            mov ah,2
-            int 21h
-            loop Hienthi
+       
         mov ah,4ch
         int 21h
         main endp
