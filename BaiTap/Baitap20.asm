@@ -4,7 +4,8 @@
          so db 50, 0 , 50 dup($)
          b1 dw 0   ; so duoc nhap vao
          muoi dw 10
-         b2 dw 0   ; tong cac uoc cua so duoc nhap vao  
+         b2 dw 0   ; tong cac uoc cua so duoc nhap vao
+         b3 dw 0  
          hoanhao db 10, 13, "so hoan hao$"
          khh db 10, 13, "Khong hoan hao$"
 .code
@@ -15,7 +16,7 @@
         lea dx,so
         mov ah,0Ah
         int 21h
-        
+        xor cx,cx
         lea si, so +2
         mov cl, [so + 1]
         
@@ -28,19 +29,29 @@
             add ax,bx
             mov b1,ax 
             inc si
-            loop Lap
-        mov cx, 2
+            loop Lap 
+           
+        mov ax, b1
+        mov bx, 2 
+        div bx
+        mov b3, ax 
+        
+        mov cx, 1
         Tongu:
         xor dx, dx
         mov ax, b1
+        cmp b2, ax
+        jae thoat
         div cx
         cmp dx, 0
         jne boqua
-        add b2, ax  
+        add b2, cx  
         boqua:
         inc cx
-        cmp cx, b1
-        jle tongu 
+        cmp cx, b3
+        jle tongu
+        
+        thoat: 
         mov bx, b1
         cmp bx, b2
         je HH
