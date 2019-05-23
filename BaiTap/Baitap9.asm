@@ -52,7 +52,7 @@
             add dx,30h
             push dx
             inc cx
-            xor ah,ah
+            ;xor ah,ah
             cmp ax,0
             jne Lapchia
         Hienthi:
